@@ -27,4 +27,6 @@ helm install pipeline-craft  ./charts/ -f ./charts/values.yaml -n $NAMESPACE
 
 helm list -n $NAMESPACE
 kubectl get pod -n $NAMESPACE
+sleep 60
+kubectl get pod -n $NAMESPACE
 echo "pipeline-craft deployed successfully"

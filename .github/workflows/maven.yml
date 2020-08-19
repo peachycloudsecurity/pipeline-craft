@@ -71,7 +71,7 @@ jobs:
           path: staging
 
     - name: Create gitstats
-      run: sudo apt-get update && sudo apt-get install gitstats  gnuplot  -y &&  gitstats . ./gitstats-springboot-devops-demo
+      run: sudo apt-get update && sudo apt-get install gitstats  gnuplot  -y &&  gitstats . ./gitstats-pipeline-craft
 
     - name: Upload gitstats
       uses: actions/upload-artifact@v1
