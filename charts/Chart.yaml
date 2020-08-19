@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: "1.0"
+description: pipeline-craft helm chart
+name: pipeline-craft
+version: 1.0.0
+maintainers:
+- name: hbstarjason
+  email: hbstarjason@gmail.com
