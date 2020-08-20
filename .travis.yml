@@ -1,0 +1,88 @@
+# 语言
+language: java
+jdk:
+  - openjdk8
+
+sudo: false
+
+before_install:
+  - chmod +x ./mvnw
+
+#env:
+#  global:
+#  - secure: "a87fdfcbc4f23e420996462816b2765d5281e694"
+# - COMMIT=${TRAVIS_COMMIT::7}
+
+# https://sonarcloud.io/
+addons:
+  sonarcloud:
+    organization: "hbstarjason"
+    token:
+      #secure: "$SONAR_TOKEN"    # Set in travis-ci.org dashboard
+      secure: "iZr+AYBx4flJl2ruCP1NjDLSpIF5Gmbpe4eNQS4pSSXCjjovVuUkNKulyncp/BDA0kO461HOfwsWBE0+Tj94TXKEjkXMBi1h8XQ582+fKeEIGCUyRNe14pkuYis/PO079GGF9alh1yzJxvsVmwUP7WnOyyedeoQbbzKkTadGBQ0NrMl6QcYBsYXiRGAjtCUYzowHJ/jfkV4YrsArVkyq8jm0eHFwMH3Y6qUYMNkGcdFJi+EREWSG/hbxi1F6Whiol1sBz2CrlYWnQM8QkLqg+Ne4jr7Lse7gzHEQIV1uN5qlwcUbZZhdXFxfbnyrN9qlyv12u3i0/NmsBF0R6J/FyKhjW35y2UaWkUFefN/oXZN55yfwaR7WcT+6c67AqFW4noCVLbl8dmJujiL+zXVZHLxACj+72tt5WC1hT0uutkm9pRznhzaNgBU8tzoc3K29I9Fz2V9BGg64Qk0lhYCiUgorQHmIvDpzcIM85atCCRZ3YwUnaEHT4bAUauu7sulmodPW/xQaHPNY63xdJZ+BJDQ8jOHroml4qLtcpoG16PGQ0bis6YzxljhSejUKIeSPvMl2ji/1aSUpkaY7RaDs6HI6URuLbq4DT7e6GhtLe2bh37WaI1r7Qnehe+R+OjsiA0ClgLbKpwQlj8EeX+/gDkkkNvAkIwgPyYUqseXqXhI="
+      
+
+#services:
+#  - docker
+
+# 执行脚本
+script: 
+  - git clone https://github.com/hbstarjason/pipeline-craft
+  - cd pipeline-craft
+  - mvn test
+  #- ./mvnw clean install -B
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=hbstarjason_pipeline-craft
+  #- mvn clean package -Dmaven.test.skip=true
+ 
+
+after_failure:
+  - export TITLE="Travis:$TRAVIS_JOB_ID -- build job is failed"
+  - export TEXT=[datetime]:`date`
+
+# 通知
+notifications:
+  email:
+    recipients:
+      - 305201518@qq.com
+    on_success: change # default: change
+    on_failure: always # default: always
+
+# 缓存
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
+#
+#deploy:
+ # provider: heroku
+  # api_key: $HEROKU_API_KEY
+  # app: nk-spring-boot-app
+
+#deploy:
+#  provider: releases
+#  api_key:
+#    secure: 7f4dc45a19f742dce39cbe4d1e5852fb588593fd
+#  file: app/build/outputs/apk/app-release.apk
+#  skip_cleanup: true
+#  on:
+#    tags: true
+
+
+# http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html
+
+# before_install
+# install
+# before_script
+# script
+# aftersuccess or afterfailure
+# [OPTIONAL] before_deploy
+# [OPTIONAL] deploy
+# [OPTIONAL] after_deploy
+# after_script
+
+# passed：运行成功，所有步骤的退出码都是0
+# canceled：用户取消执行
+# errored：before_install、install、before_script有非零退出码，运行会立即停止
+# failed ：script有非零状态码 ，会继续运行
+
