@@ -93,7 +93,7 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "pipeline-craft"
         heroku_email: ${{secrets.HEROKU_EMAIL}}
-        healthcheck: "https://pipeline-craft.herokuapp.com/health"
+        healthcheck: "https://pipeline-craft.herokuapp.com"
 
      #- name: Show Error Logs
        #if: failure()
