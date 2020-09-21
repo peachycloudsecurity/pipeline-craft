@@ -86,6 +86,13 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: hbstarjason/pipeline-craft
         tags: latest
+    
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with: 
+        file: "pipeline-craft*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
     - name: Deploy to Heroku
       uses: akhileshns/heroku-deploy@v3.4.6
