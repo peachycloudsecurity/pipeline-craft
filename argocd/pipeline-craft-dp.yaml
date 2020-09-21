@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: pipeline-craft
   name: pipeline-craft
   labels:
     app: pipeline-craft
