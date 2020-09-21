@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pipeline-craft
+  labels:
+    app: pipeline-craft
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pipeline-craft
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: pipeline-craft
+        tier: backend
+    spec:
+      containers:
+      - name: pipeline-craft
+        image: hbstarjason/pipeline-craft
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 15

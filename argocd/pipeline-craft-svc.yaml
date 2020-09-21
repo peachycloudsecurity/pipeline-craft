@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pipeline-craft
+  labels:
+    app: pipeline-craft
+    tier: backend
+spec:
+  selector:
+    app: pipeline-craft
+    tier: backend
+  ports:
+  - port: 8082
+    name: k8s-backend
+  type: LoadBalancer
+  #type: NodePort  
