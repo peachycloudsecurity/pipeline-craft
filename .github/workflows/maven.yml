@@ -88,10 +88,13 @@ jobs:
         tags: latest
     
     - name: Create release
-      uses: softprops/action-gh-release@v1
+      #uses: softprops/action-gh-release@v1
+      uses: qcastel/github-actions-maven-release@master
       with: 
-        file: "pipeline-craft*"
-      env:
+        release-branch-name: "master"
+        git-release-bot-name: "pipeline-craft"
+        git-release-bot-email: "hbstarjason@gmail.com"
+
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
     - name: Deploy to Heroku
