@@ -87,15 +87,6 @@ jobs:
         repository: hbstarjason/pipeline-craft
         tags: latest
     
-    - name: Create release
-      #uses: softprops/action-gh-release@v1
-      uses: qcastel/github-actions-maven-release@master
-      with: 
-        release-branch-name: "master"
-        git-release-bot-name: "pipeline-craft"
-        git-release-bot-email: "hbstarjason@gmail.com"
-
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
     - name: Deploy to Heroku
       uses: akhileshns/heroku-deploy@v3.4.6
