@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1 # Changed from apps/v1
+kind: Rollout # Changed from Deployment
+# ----- Everything below this comment is the same as a deployment -----
+metadata:
+  name: pipeline-craft-canary
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: pipeline-craft
+  template:
+    metadata:
+      labels:
+        app: pipeline-craft
+    spec:
+      containers:
+      - name: pipeline-craft
+        image: hbstarjason/pipeline-craft
+        ports:
+        - containerPort: 8080
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+  # ----- Everything above this comment are the same as a deployment -----
+    canary: # A new field that used to provide configurable options for a Canary strategy
+      steps:
+      - setWeight: 20
+      - pause: {}
