@@ -31,8 +31,8 @@ jobs:
       with:
         manifest: okteto.yml
 
-    - name: "Push changes"
-      uses: okteto/push@master
-      with:
-        namespace: hbstarjason
-        name: pipeline-craft    
+    #- name: "Push changes"
+    #  uses: okteto/push@master
+    #  with:
+    #    namespace: hbstarjason
+    #    name: pipeline-craft    
