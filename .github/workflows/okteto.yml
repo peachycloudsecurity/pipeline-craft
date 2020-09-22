@@ -21,11 +21,10 @@ jobs:
       with:
         name: hbstarjason
     
-    - name: "Build"
-      uses: okteto/build@master
-      with:
-        tag: registry.cloud.okteto.net/hbstarjason/pipeline-craft:${{ github.sha }}
-        path: kaniko/
+    #- name: "Build"
+    #  uses: okteto/build@master
+    #  with:
+    #    tag: registry.cloud.okteto.net/hbstarjason/pipeline-craft:${{ github.sha }}
 
     - name: "Deploy application"
       uses: okteto/apply@master
