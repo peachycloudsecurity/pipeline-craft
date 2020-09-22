@@ -1,3 +1,5 @@
+# https://okteto.com/docs/cloud/github-actions/index.html
+
 on: [push]
 
 name: deploy
@@ -18,8 +20,19 @@ jobs:
       uses: okteto/namespace@master
       with:
         name: hbstarjason
+    
+    - name: "Build"
+      uses: okteto/build@master
+      with:
+        tag: registry.cloud.okteto.net/hbstarjason/pipeline-craft:${{ github.sha }}
 
-    - name: "Create deployment"
+    - name: "Deploy application"
       uses: okteto/apply@master
       with:
         manifest: okteto.yml
+
+    - name: "Push changes"
+      uses: okteto/push@master
+      with:
+        namespace: hbstarjason
+        name: pipeline-craft    
