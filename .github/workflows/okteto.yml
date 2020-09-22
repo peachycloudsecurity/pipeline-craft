@@ -1,0 +1,25 @@
+on: [push]
+
+name: deploy
+
+jobs:
+
+  devflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+      
+    - uses: okteto/login@master
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+    
+    - name: "Activate personal namespace"
+      uses: okteto/namespace@master
+      with:
+        name: hbstarjason
+
+    - name: "Create deployment"
+      uses: okteto/apply@master
+      with:
+        manifest: okteto.yml

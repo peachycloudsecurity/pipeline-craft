@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  #namespace: pipeline-craft
+  name: pipeline-craft
+  labels:
+    app: pipeline-craft
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pipeline-craft
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: pipeline-craft
+        tier: backend
+    spec:
+      containers:
+      - name: pipeline-craft
+        image: hbstarjason/pipeline-craft
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 15
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  #namespace: pipeline-craft
+  name: pipeline-craft
+  labels:
+    app: pipeline-craft
+    tier: backend
+spec:
+  selector:
+    app: pipeline-craft
+    tier: backend
+  ports:
+  - port: 8080
+    name: k8s-backend
+    targetPort: 8080
+  type: LoadBalancer
+  #type: NodePort  
