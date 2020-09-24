@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: pipeline-craft
-        image: hbstarjason/pipeline-craft
+        image: hbstarjason/pipeline-craft:kaniko-elastic
         resources:
           requests:
             cpu: 100m
