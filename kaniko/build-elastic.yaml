@@ -11,7 +11,7 @@ spec:
         image: hbstarjason/executor:v0.24.0
         args: ["--dockerfile=kaniko/Dockerfile",
                "--context=git://github.com/hbstarjason/pipeline-craft.git#refs/heads/master",
-               "--destination=hbstarjason/pipeline-craft:kaniko"]
+               "--destination=hbstarjason/pipeline-craft:kaniko-elastic"]
         volumeMounts:
         - name: kaniko-secret
           mountPath: "/kaniko/.docker"
