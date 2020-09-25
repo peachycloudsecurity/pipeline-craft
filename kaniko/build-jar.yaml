@@ -9,7 +9,7 @@ spec:
       - name: kaniko
         #image: gcr.io/kaniko-project/executor:latest
         image: hbstarjason/executor:v0.24.0
-        args: ["--dockerfile=kaniko/Dockerfile",
+        args: ["--dockerfile=kaniko/Dockerfile-package",
                "--context=git://github.com/hbstarjason/pipeline-craft.git#refs/heads/master",
                "--destination=hbstarjason/pipeline-craft:jar"]
         volumeMounts:
