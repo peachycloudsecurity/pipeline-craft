@@ -57,24 +57,22 @@
 
 
 
-argocd：
-http://a4bb9d7ef5bb344d7bfa93580ac32862-1007326277.cn-northwest-1.elb.amazonaws.com.cn:8081
+相关连接：
 
-kuboard：
-http://a95ae2482b8474fdcbecbe49e7ccb3cc-1915316544.cn-northwest-1.elb.amazonaws.com.cn:81
-
-jenkins:
-http://ac3d2f43b8d1d45c58c143e6b4fcc49f-1916756479.cn-northwest-1.elb.amazonaws.com.cn:8088/
-
-skywalking：
-
-http://ada285066410d4037a3c0e30e775eb90-680859113.cn-northwest-1.elb.amazonaws.com.cn:8088/
+- argocd：
+  http://a4bb9d7ef5bb344d7bfa93580ac32862-1007326277.cn-northwest-1.elb.amazonaws.com.cn:8081
+- kuboard：
+  http://a95ae2482b8474fdcbecbe49e7ccb3cc-1915316544.cn-northwest-1.elb.amazonaws.com.cn:81
+- jenkins:
+  http://ac3d2f43b8d1d45c58c143e6b4fcc49f-1916756479.cn-northwest-1.elb.amazonaws.com.cn:8088/
+- skywalking：
+  http://ada285066410d4037a3c0e30e775eb90-680859113.cn-northwest-1.elb.amazonaws.com.cn:8088/
 
 
 
 
 
-**（由于近期一直在客户现场救火，暂时停止更新……）**
+**（由于近期一直在客户现场救火，只能遗憾的停止更新……）**
 
 
 
