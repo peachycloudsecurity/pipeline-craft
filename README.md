@@ -10,6 +10,10 @@
 | 构建工具 | Maven           |      |
 | 部署环境 | AWS EKS、Heroku |      |
 
+说明：核心重点主要是CICD，本demo包含3条Pipeline，适用于不同的场景。
+
+
+
 ## 1、基于Github Actions
 
 **主要过程描述：**
@@ -37,17 +41,40 @@
 
 ~~Terraform+AWS EKS+Gitlab（Github）+Jenkins（Kaniko、tekton）+Jfrog Artifactory+Harbor+ArgoCD（Helm）+ArgoRollouts（Spinnaker）+Prometheus+Elastic Stack（Skywalking）~~
 
+由于资源有限，采取以下更轻量更高效方案：
+
 - AWS EKS+Github+Kaniko+ArgoCD+ArgoRollouts
-- +Elastic Stack
+- JFrog Artifactory+Elastic Stack
 
 主要过程描述：
 
 亮点：~~Dynamic-Slave~~、Kaniko、Skaffold、GitOps、Multi-Cluster、Auto Canary
 
-- 通过Kaniko来完全替换Jenkins构建镜像。
-- 以Sidecar模式来部署，真正实现应用解耦。
+- 通过Kaniko来完全替换Jenkins构建镜像。（如想了解jenkins构建镜像，请猛击：https://github.com/hbstarjason/springboot-devops-demo）
+- 以Sidecar模式来部署，真正实现应用与环境解耦。
 
 适用场景：内网私有云、开源组件灵活可替换，完全解耦。各个工具各司其职，专业工具干专业活。
+
+
+
+argocd：
+http://a4bb9d7ef5bb344d7bfa93580ac32862-1007326277.cn-northwest-1.elb.amazonaws.com.cn:8081
+
+kuboard：
+http://a95ae2482b8474fdcbecbe49e7ccb3cc-1915316544.cn-northwest-1.elb.amazonaws.com.cn:81
+
+jenkins:
+http://ac3d2f43b8d1d45c58c143e6b4fcc49f-1916756479.cn-northwest-1.elb.amazonaws.com.cn:8088/
+
+skywalking：
+
+http://ada285066410d4037a3c0e30e775eb90-680859113.cn-northwest-1.elb.amazonaws.com.cn:8088/
+
+
+
+
+
+**（由于近期一直在客户现场救火，暂时停止更新……）**
 
 
 
