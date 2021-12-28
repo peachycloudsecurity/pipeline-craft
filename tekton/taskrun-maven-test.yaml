@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: testrun-maven-test
+  name: taskrun-maven-test
 spec:
   taskRef:
     name: maven-test
