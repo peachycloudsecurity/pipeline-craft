@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: testrun-maven-test
+spec:
+  taskRef:
+    name: maven-test
+  resources:
+    inputs:
+    - name: git-res
+      resourceRef:
+        name: git-resource
