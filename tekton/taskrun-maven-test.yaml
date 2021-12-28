@@ -4,7 +4,7 @@ metadata:
   name: taskrun-maven-test
 spec:
   taskRef:
-    name: maven-test
+    name: task-maven-test
   resources:
     inputs:
     - name: git-res
