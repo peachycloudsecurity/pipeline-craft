@@ -21,6 +21,15 @@ spec:
     volumeMounts:
       - name:  m2
         mountPath:  /root/.m2
+  - name: list-result
+    image: alpine
+    workingDir: /workspace/repo
+    command:
+      - bash
+    args:
+      - -c
+      - |
+        ls -l ./target/
   volumes:
    - name: m2
      hostPath:
