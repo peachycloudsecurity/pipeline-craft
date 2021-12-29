@@ -6,12 +6,12 @@ metadata:
 spec:
   resources:
     inputs:
-      - name: git-repo
+      - name: repo
         type: git
   steps:
   - name: maven-test
-    image: maven:3.5.2-jdk-8-alpine
-    workingDir: /workspace/git-repo
+    image: maven
+    workingDir: /workspace/repo
     command:
       - mvn
     args:
