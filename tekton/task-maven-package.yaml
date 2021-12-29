@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-maven-package
+  #namespace: tekton-pipelines
+spec:
+  resources:
+    inputs:
+      - name: repo
+        type: git
+  steps:
+  - name: maven-package
+    image: maven
+    workingDir: /workspace/repo
+    command:
+      - mvn
+    args:
+      - clean
+      - install
+      - -DskipTests
+    volumeMounts:
+      - name:  m2
+        mountPath:  /root/.m2
+  volumes:
+   - name: m2
+     hostPath:
+      path: /root/.m2
