@@ -7,6 +7,6 @@ spec:
     name: task-maven-test
   resources:
     inputs:
-    - name: git-repo
+    - name: repo
       resourceRef:
         name: git-resource
