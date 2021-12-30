@@ -11,6 +11,7 @@ spec:
   steps:
   - name: maven-package
     image: maven
+    imagePullPolicy: IfNotPresent
     workingDir: /workspace/repo
     command:
       - mvn
@@ -23,6 +24,7 @@ spec:
         mountPath:  /root/.m2
   - name: list-result
     image: alpine
+    imagePullPolicy: IfNotPresent
     workingDir: /workspace/repo
     command:
       - ash
