@@ -11,7 +11,7 @@ spec:
   steps:
   - name: build-and-push
     image: gcr.io/kaniko-project/executor
-    #workingDir: /workspace/repo
+    workingDir: /workspace/repo
     env:
     - name: DOCKER_CONFIG
       value: /tekton/home/.docker
