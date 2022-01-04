@@ -5,4 +5,4 @@ metadata:
   #namespace: tekton-pipelines
 secrets:
 - name: dockerhub-secret
-- name: git-secret
+#- name: git-secret
