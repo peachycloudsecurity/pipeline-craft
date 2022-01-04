@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: taskrun-build-and-push
+  #namespace: tekton-pipelines
+spec:
+  serviceAccountName: build-sa
+  taskRef:
+    name: task-build-and-push
+  resources:
+    inputs:
+    - name: repo
+      resourceRef:
+        name: git-resource
