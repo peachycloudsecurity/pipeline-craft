@@ -17,5 +17,5 @@ spec:
       value: /tekton/home/.docker
     command:
       - /kaniko/executor
-      - --dockerfile=Dockerfile
+      - --dockerfile=./Dockerfile
       - --destination=hbstarjason/pipeline-craft:tekton
