@@ -18,5 +18,5 @@ spec:
     command:
       - /kaniko/executor
       - --dockerfile=Dockerfile
-      - --context=/workspace/repo
+      - --context=/workspace/repo/
       - --destination=hbstarjason/pipeline-craft:tekton
