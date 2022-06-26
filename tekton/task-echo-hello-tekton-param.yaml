@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: task-echo-hello-tekton-param
+spec:
+  params:
+    - name: person
+      description: Name of person to greet
+      default: Tekton
+      type: string
+  steps:
+    - name: echo-tekton
+      image: alpine
+      command:
+        - /bin/sh
+      args: ['-c', 'echo Hello $(params.person)']
