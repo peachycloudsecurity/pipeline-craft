@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-echo-hello-tekton-param
+spec:
+  taskRef:
+    name: task-echo-hello-tekton-param
