@@ -2,8 +2,9 @@
 
 set -euo pipefail
 
-kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.10.0/release.yaml
+### https://github.com/shipwright-io/build
 
+kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.10.0/release.yaml
 kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.10.0/sample-strategies.yaml
 
 
