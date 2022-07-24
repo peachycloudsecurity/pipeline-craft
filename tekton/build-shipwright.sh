@@ -42,4 +42,4 @@ EOF
 kubectl apply -f  build.yaml
 kubectl apply -f  buildrun.yaml
 
-tkn taskrun ls
+tkn taskrun ls |grep shipwright |awk '{print $1}'
