@@ -7,6 +7,8 @@ set -euo pipefail
 kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.10.0/release.yaml
 kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.10.0/sample-strategies.yaml
 
+### https://shipwright.io/docs/getting-started/installation/
+### kubectl apply -f https://operatorhub.io/install/shipwright-operator.yaml
 
 
 cat > build.yaml << EOF
