@@ -39,5 +39,7 @@ spec:
     name: kaniko-shipwright-build
 EOF
 
+kubectl apply -f  build.yaml
+kubectl apply -f  buildrun.yaml
 
 tkn taskrun ls
