@@ -19,5 +19,5 @@ spec:
       #! /bin/sh
       echo '###' >> image-scan
       ## trivy -q image -o file.txt hbstarjason/pipeline-craft:tekton >> image-scan
-      trivy  hbstarjason/pipeline-craft:tekton
+      trivy image hbstarjason/pipeline-craft:tekton
       echo '###' >> image-scan
