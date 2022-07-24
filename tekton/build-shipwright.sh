@@ -44,4 +44,7 @@ EOF
 kubectl apply -f  build.yaml
 kubectl apply -f  buildrun.yaml
 
+
 tkn taskrun ls |grep shipwright-buildrun |awk '{print $1}'
+
+tkn tr logs $(tkn taskrun ls |grep shipwright-buildrun |awk '{print $1}')
