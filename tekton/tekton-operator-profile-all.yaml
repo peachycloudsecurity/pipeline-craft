@@ -11,4 +11,6 @@ spec:
       - pipelinerun
       - taskrun
     keep: 100
-    schedule: "0 8 * * *"
+    schedule: "* * * * *"
+  dashboard:
+    readonly: true
