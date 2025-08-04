@@ -90,8 +90,8 @@ kubectl delete secret dockerhub-secret --ignore-not-found
 
 # Create correct dockerconfigjson type secret
 kubectl create secret docker-registry dockerhub-secret \
-  --docker-username=gurubaba \
-  --docker-password='Password@123#' \
+  --docker-username= \
+  --docker-password='@123#' \
   --docker-email=your-email@example.com
 
 kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "dockerhub-secret"}]}'
@@ -103,18 +103,14 @@ kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "dockerh
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.9/git-clone.yaml
 ```
 ```bash
-# Create all files
-# (Run all the cat <<EOF commands above)
-
-# Apply the pipeline
-./apply-pipeline.sh
+# Apply the updated files
+kubectl delete -f tasks/task-build.yaml
+kubectl delete -f pipeline.yaml
+kubectl delete -f pipelinerun.yaml
 
 # Check status
 tkn pipelinerun list
 tkn pipelinerun logs build-deploy-run
-
-# Cleanup when done
-./cleanup.sh
 ```
 
 
