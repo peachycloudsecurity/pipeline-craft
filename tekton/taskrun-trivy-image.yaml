@@ -1,13 +1,10 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: TaskRun
 metadata:
   name: taskrun-trivy-image
-  #namespace: tekton-pipelines
 spec:
   taskRef:
-    name: task-trivy-image
-  resources:
-    inputs:
-    - name: repo
-      resourceRef:
-        name: git-resource
+    name: trivy-scan
+  params:
+    - name: IMAGE_URL
+      value: docker.io/gurubaba/tekton-demo:latest
