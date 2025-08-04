@@ -1,23 +1,13 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: Task
 metadata:
-  name: task-trivy-image
-  #namespace: tekton-pipelines
+  name: trivy-scan
 spec:
-  resources:
-    inputs:
-      - name: repo
-        type: git
+  params:
+    - name: IMAGE_URL
+      type: string
   steps:
-  - name: trivy-image
-    image: aquasec/trivy
-    workingDir: /workspace/repo
-    env:
-    - name: DOCKER_CONFIG
-      value: /tekton/home/.docker
-    script: |
-      #! /bin/sh
-      echo '###' >> image-scan
-      ## trivy -q image -o file.txt hbstarjason/pipeline-craft:tekton >> image-scan
-      trivy image hbstarjason/pipeline-craft:tekton
-      echo '###' >> image-scan
+    - name: trivy-scan
+      image: aquasec/trivy:latest
+      script: |
+        trivy image --severity CRITICAL --no-progress $(params.IMAGE_URL)
