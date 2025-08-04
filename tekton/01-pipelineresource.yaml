@@ -6,6 +6,6 @@ spec:
   type: git
   params:
   - name: url
-    value: https://github.com/hbstarjason2021/pipeline-craft
+    value: https://github.com/peachycloudsecurity/pipeline-craft
   - name: revision
     value: master
