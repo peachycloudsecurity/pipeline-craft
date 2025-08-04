@@ -1,22 +1,27 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: Task
 metadata:
-  name: task-build-and-push
-  #namespace: tekton-pipelines
+  name: build-and-push
 spec:
-  resources:
-    inputs:
-      - name: repo
-        type: git
+  workspaces:
+    - name: shared-workspace
+  params:
+    - name: IMAGE
+      type: string
   steps:
-  - name: build-and-push
-    image: gcr.io/kaniko-project/executor
-    workingDir: /workspace/repo
-    env:
-    - name: DOCKER_CONFIG
-      value: /tekton/home/.docker
-    command:
-      - /kaniko/executor
-      - --dockerfile=Dockerfile
-      - --context=/workspace/repo/
-      - --destination=hbstarjason/pipeline-craft:tekton
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:latest
+      args:
+        - --dockerfile=$(workspaces.shared-workspace.path)/Dockerfile
+        - --context=$(workspaces.shared-workspace.path)/
+        - --destination=$(params.IMAGE)
+      volumeMounts:
+        - name: docker-config
+          mountPath: /kaniko/.docker/
+  volumes:
+    - name: docker-config
+      secret:
+        secretName: dockerhub-secret
+        items:
+          - key: .dockerconfigjson
+            path: config.json

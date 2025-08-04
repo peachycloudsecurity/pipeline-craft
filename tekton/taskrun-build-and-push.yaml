@@ -1,14 +1,14 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: TaskRun
 metadata:
   name: taskrun-build-and-push
-  #namespace: tekton-pipelines
 spec:
-  serviceAccountName: build-sa
   taskRef:
-    name: task-build-and-push
-  resources:
-    inputs:
-    - name: repo
-      resourceRef:
-        name: git-resource
+    name: build-and-push
+  params:
+    - name: IMAGE
+      value: docker.io/gurubaba/tekton-demo:latest
+  workspaces:
+    - name: shared-workspace
+      persistentVolumeClaim:
+        claimName: tekton-pvc
