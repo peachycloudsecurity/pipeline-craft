@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: build-deploy-run
+spec:
+  pipelineRef:
+    name: build-deploy-pipeline
+  workspaces:
+    - name: shared-workspace
+      emptyDir: {}
+  params:
+    - name: git-url
+      value: "https://github.com/peachycloudsecurity/simple-web-app"
+    - name: image-name
+      value: "my-app:latest"
+    - name: namespace
+      value: "demo"

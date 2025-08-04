@@ -1,33 +1,67 @@
-apiVersion: tekton.dev/v1
+### https://tekton.dev/docs/getting-started/tasks/
+### https://tekton.dev/docs/getting-started/pipelines/
+
+###### kubectl logs --selector=tekton.dev/taskRun=hello-task-run
+###### tkn pipelinerun logs hello-goodbye-run -f -n default
+
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello
+spec:
+  steps:
+    - name: echo
+      image: alpine
+      script: |
+        #!/bin/sh
+        echo "Hello World"
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: hello-task-run
+spec:
+  taskRef:
+    name: hello
+    
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: goodbye
+spec:
+  steps:
+    - name: goodbye
+      image: ubuntu
+      script: |
+        #!/bin/bash
+        echo "Goodbye World!" 
+        
+---
+apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: hello-goodbye-pipeline
+  name: hello-goodbye
 spec:
-  workspaces:
-    - name: shared-workspace
   tasks:
-    - name: echo-hello
+    - name: hello
       taskRef:
-        name: task-echo-hello-world
-    - name: git-clone
-      runAfter: [echo-hello]
+        name: hello
+    - name: goodbye
+      runAfter:
+        - hello
       taskRef:
-        name: git-clone
-      workspaces:
-        - name: output
-          workspace: shared-workspace
-      params:
-        - name: url
-          value: https://github.com/peachycloudsecurity/pipeline-craft
-        - name: revision
-          value: master
-    - name: build-and-push
-      runAfter: [git-clone]
-      taskRef:
-        name: build-and-push
-      workspaces:
-        - name: shared-workspace
-          workspace: shared-workspace
-      params:
-        - name: IMAGE
-          value: docker.io/gurubaba/tekton-demo:latest
+        name: goodbye
+        
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: hello-goodbye-run
+spec:
+  pipelineRef:
+    name: hello-goodbye
+    
+---
+
